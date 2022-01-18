@@ -16,7 +16,9 @@ just used what other people regularly defined their non-terminal naming conventi
 parsing which is a form of top-down parsing. This parsing algorithm that is built off of the idea of mutual recursion which is a type of recursion that has 
 specific procedures call other procedures in a recursive-nature, this can be expressed like this: Function A() calls function B() which calls function C() which calls function A() once more, it's almost like a recursive circle that's led through the nature of mutual recursion.
 
+Resources:
 https://en.wikipedia.org/wiki/Recursive_descent_parser
+
 https://www.sparknotes.com/cs/recursion/whatisrecursion/section2/
 
 
