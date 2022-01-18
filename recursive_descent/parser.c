@@ -10,6 +10,7 @@
 
 token_t *current_token = 0;
 
+// Consumes a token via logic-checking to make sure the type alines with the global variables current token, and moves the head of the list forward.
 void consume_token(int type)
 {
     LASSERT(current_token || current_token->fd, "No current token || End of the token stream");
@@ -19,12 +20,14 @@ void consume_token(int type)
         current_token = current_token->fd;    
 }
  
+// Start of the recursion loop, sets the current token to the head of the token stream.
 int parse(lexer_t *token)
 {
     current_token = token->head;
     return (expr());
 }
  
+// Takes the result of term and see's if the current token is either addition or subtraction, and if it is we'll recursively iterate the return values with either.
 int expr(void)
 {
     int res = term();
@@ -43,7 +46,8 @@ int expr(void)
  
     return (res);
 }
- 
+
+// Same as expr() but for multiplication and division. 
 int term(void)
 {
     int res = power();
@@ -63,6 +67,7 @@ int term(void)
     return (res);
 }
  
+// Special case for exponentional arithmetic.
 int power(void)
 {
     int res = unary();
@@ -76,6 +81,7 @@ int power(void)
     return (res);
 }
  
+// Special case for negating numbers.
 int unary(void)
 {
     if(current_token->type == SUB_OP)
@@ -84,6 +90,7 @@ int unary(void)
         return(factor());
 }
  
+// Calcuates and evaluates parentheses being in the given arithmetic expression and returns the evaluation result.
 int factor(void)
 {
     int res = 0;
