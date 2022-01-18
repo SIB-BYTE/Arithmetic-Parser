@@ -1,4 +1,4 @@
-# Arithmetic-Parser
+# Arithmetic-Parser:
 LL(1) parser with a hand-written lexer. (I plan on also implementing the shunting-yard algorithm to also parse arithmetic expressions)
 
 Here is the backus-naur form metasyntax to describe how the recursive-descent parser will accept it's context-free grammars and what it will do with them:
@@ -18,3 +18,23 @@ specific procedures call other procedures in a recursive-nature, this can be exp
 
 https://en.wikipedia.org/wiki/Recursive_descent_parser
 https://www.sparknotes.com/cs/recursion/whatisrecursion/section2/
+
+
+# Usage:
+The parser will only take given set of context-free grammar sets that include valid integers and valid operators that have support from the lexer like so:
+```c
+#include <stdio.h>
+#include "parser.h"
+
+int main(void)
+{
+    char expr[] = "10 + 5 * (20 / 10)"; // This cannot be a pointer to a string because pointers only hold string literals that however cannot be modified.
+    lexer_t *tokenize = lexer(expr);
+    printf("Result of evaluation : %d\n", parse(expr));
+    
+    destroy_lexer(tokenize);
+    free_all_tokens(tokenize);
+}
+```
+
+"expr" in this case can be any given expression that is valid and able to be accepted by our grammar.
