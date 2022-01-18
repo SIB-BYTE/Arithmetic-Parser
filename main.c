@@ -12,13 +12,13 @@
 int main(void)
 {
 	char expr[64];
-	lexer_t *tokenize = lexer(expr);
 
-	printf("Enter an expression: ");
+	printf("Provide a grammar: ");
 	fgets(expr, sizeof(expr), stdin);
 
-	printf("Result -> %d\n", parse(tokenize));
-	
+	lexer_t *tokenize = lexer(expr);
+	printf("Result of grammar -> {%d}\n", parse(tokenize));
+
 	destroy_all_tokens(tokenize);
-	lexer_destroy(tokenize);	
+	lexer_destroy(tokenize);
 }
