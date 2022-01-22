@@ -12,7 +12,7 @@ int main(void)
 */
 
 // Construct a token token structure.
-token_t *new_token(char type, int value)
+token_t *new_token(char type, double value)
 {
 	token_t *token = calloc(1, sizeof(token_t));
 	LASSERT(token != NULL, "Token: Failed memory allocation!");
@@ -121,11 +121,11 @@ void parse_integer(lexer_t *lexer)
 
 	long lexme = strtol(lexer->expr, &end, 10);
 	
+	LASSERT(lexer->expr != end, "Yeah this shouldn't happen lmfao");
 	LASSERT(errno == 0, "Strtol error!");
 	LASSERT((lexme < MAX_SIZE && lexme > MIN_SIZE), "Not a valid integer!");
-	LASSERT(lexer->expr != end, "Yeah this shouldn't happen lmfao");
 
-	token_t *token = new_token(INTEGER, lexme);
+	token_t *token = new_token(DOUBLE, lexme);
 	lexer_add_token(lexer, token);
 	lexer->expr = end;
 }

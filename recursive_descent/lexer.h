@@ -13,8 +13,8 @@
     { \
         if(!(condition)) \
         { \
-            puts("[*] Process terminated! lassert() failed!"); \
-            fprintf(stderr, "Condition\t: {%s}\nFunction\t: {%s}\nFailed in file\t: {%s}\nAt line \t: {%d}\n", #condition, __FUNCTION__, __FILE__, __LINE__);\
+            puts("[*] Process terminated! LASSERT(); failed!"); \
+            fprintf(stderr, "Condition\t: {%s}\nFunction\t: {%s}\nFailed in file\t: {%s}\nAt line \t: {%d}\n", #condition, __func__, __FILE__, __LINE__);\
             puts(message); \
             exit(1); \
         } \
@@ -37,7 +37,7 @@ struct token {
 		POWER_OF = '^'
 	} type;
 
-	int value;
+	double value;
 	struct token *fd;
 
 } typedef token_t;
@@ -51,7 +51,7 @@ struct lexer {
 // Tokenizing functionalities.
 void parse_integer(lexer_t *lexer);
 const char *token_type(int token_type);
-token_t *new_token(char token_type, int value);
+token_t *new_token(char token_type, double value);
 
 // Lexer functionalities. 
 lexer_t *lexer(char *tokens);

@@ -10,7 +10,6 @@
 
 token_t *current_token = 0;
 
-// Consumes a token via logic-checking to make sure the type alines with the global variables current token, and moves the head of the list forward.
 void consume_token(int type)
 {
     LASSERT(current_token || current_token->fd, "No current token || End of the token stream");
@@ -20,17 +19,15 @@ void consume_token(int type)
         current_token = current_token->fd;    
 }
  
-// Start of the recursion loop, sets the current token to the head of the token stream.
-int parse(lexer_t *token)
+float parse(lexer_t *token)
 {
     current_token = token->head;
     return (expr());
 }
  
-// Takes the result of term and see's if the current token is either addition or subtraction, and if it is we'll recursively iterate the return values with either.
-int expr(void)
+float expr(void)
 {
-    int res = term();
+    float res = term();
  
     if(current_token->type == ADD_OP)
     {
@@ -46,11 +43,10 @@ int expr(void)
  
     return (res);
 }
-
-// Same as expr() but for multiplication and division. 
-int term(void)
+ 
+float term(void)
 {
-    int res = power();
+    float res = power();
  
     if(current_token->type == MUL_OP)
     {
@@ -67,10 +63,9 @@ int term(void)
     return (res);
 }
  
-// Special case for exponentional arithmetic.
-int power(void)
+float power(void)
 {
-    int res = unary();
+    float res = unary();
  
     if(current_token->type == POWER_OF)
     {
@@ -81,8 +76,7 @@ int power(void)
     return (res);
 }
  
-// Special case for negating numbers.
-int unary(void)
+float unary(void)
 {
     if(current_token->type == SUB_OP)
         return (0 - unary());
@@ -90,10 +84,9 @@ int unary(void)
         return(factor());
 }
  
-// Calcuates and evaluates parentheses being in the given arithmetic expression and returns the evaluation result.
-int factor(void)
+float factor(void)
 {
-    int res = 0;
+    float res = 0.00;
  
     if(current_token->type == L_PAR)
     {
@@ -102,10 +95,10 @@ int factor(void)
         consume_token(R_PAR);
         return (res);
     }
-    else if(current_token->type == 2)
+    else if(current_token->type == 1)
     {
         int tmp = current_token->value;
-        consume_token(2);
+        consume_token(1);
         return (tmp);
     }
     
