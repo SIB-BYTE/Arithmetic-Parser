@@ -121,9 +121,9 @@ void parse_integer(lexer_t *lexer)
 
 	long lexme = strtol(lexer->expr, &end, 10);
 	
-	LASSERT(lexer->expr != end, "Yeah this shouldn't happen lmfao");
 	LASSERT(errno == 0, "Strtol error!");
 	LASSERT((lexme < MAX_SIZE && lexme > MIN_SIZE), "Not a valid integer!");
+	LASSERT(lexer->expr != end, "Yeah this shouldn't happen lmfao");
 
 	token_t *token = new_token(INTEGER, lexme);
 	lexer_add_token(lexer, token);
