@@ -3,6 +3,9 @@
 
 #include "lexer.h"
 #include <math.h>
+#include <stdbool.h>
+
+#define NEG(x) x = -x
 
 // Parser aspects.
 float parse(lexer_t *token);

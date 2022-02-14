@@ -79,9 +79,12 @@ float power(void)
 float unary(void)
 {
     if(current_token->type == SUB_OP)
-        return (0 - unary());
+    {
+        consume_token(SUB_OP);
+        return (-unary() - 0);
+    }
     else
-        return(factor());
+        return (factor());
 }
  
 float factor(void)
@@ -93,12 +96,14 @@ float factor(void)
         consume_token(L_PAR);
         res = expr();
         consume_token(R_PAR);
+        
         return (res);
     }
     else if(current_token->type == 1)
     {
         int tmp = current_token->value;
         consume_token(1);
+        
         return (tmp);
     }
     
