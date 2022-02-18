@@ -1,10 +1,11 @@
 # Arithmetic-Parser:
-Usage:
+# How to use install it:
 
 ```ocaml
 git clone https://github.com/SIB-BYTE/Arithmetic-Parser/ ; make ; ./main
 ```
 
+# Logic break-down:
 LL(1) parser with a hand-written lexer. (I plan on also implementing the shunting-yard algorithm to also parse arithmetic expressions)
 
 Here is the backus-naur form metasyntax to describe how the recursive-descent parser will accept it's context-free grammars and what it will do with them:
@@ -22,7 +23,7 @@ just used what other people regularly defined their non-terminal naming conventi
 parsing which is a form of top-down parsing. This parsing algorithm that is built off of the idea of mutual recursion which is a type of recursion that has 
 specific procedures call other procedures in a recursive-nature, this can be expressed like this: Function A() calls function B() which calls function C() which calls function A() once more, it's almost like a recursive circle that's led through the nature of mutual recursion.
 
-Resources:
+# Resources:
 
 https://en.wikipedia.org/wiki/Recursive_descent_parser
 
