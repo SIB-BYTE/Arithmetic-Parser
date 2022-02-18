@@ -21,16 +21,12 @@ void consume_token(int type)
 
 float parse(lexer_t *token)
 {
-	LASSERT(token->head, "Invalid token!");
-
     current_token = token->head;
     return (expr());
 }
 
 float expr(void)
 {
-	LASSERT(current_token->type != -1, "Invalid token passed!");
-
     float res = term();
 
     if(current_token->type == ADD_OP)
@@ -50,8 +46,6 @@ float expr(void)
 
 float term(void)
 {
-	LASSERT(current_token->type != -1, "Invalid token passed!");
-
     float res = power();
 
     if(current_token->type == MUL_OP)
@@ -71,8 +65,6 @@ float term(void)
 
 float power(void)
 {
-	LASSERT(current_token->type != -1, "Invalid token passed!");
-
     float res = unary();
 
     if(current_token->type == POWER_OF)
@@ -86,8 +78,6 @@ float power(void)
 
 float unary(void)
 {
-	LASSERT(current_token->type != -1, "Invalid token passed!");
-
     if(current_token->type == SUB_OP)
     {
         consume_token(SUB_OP);
