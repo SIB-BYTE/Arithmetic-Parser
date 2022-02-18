@@ -29,7 +29,7 @@ https://en.wikipedia.org/wiki/Recursive_descent_parser
 https://www.sparknotes.com/cs/recursion/whatisrecursion/section2/
 
 
-# Usage:
+# API Usage:
 The parser will only take given set of context-free grammar sets that include valid integers and valid operators that have support from the lexer like so:
 ```c
 #include <stdio.h>
