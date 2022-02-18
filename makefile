@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Ofast -lm -o
-CFLAGS_DEBUG = -Wall -Wextra -fsanitize=address,undefined -g3 -Ofast -D DEBUG -lm -o
+CFLAGS = -w -Ofast -lm -o
+CFLAGS_DEBUG = -w -fsanitize=address,undefined -g3 -Ofast -D DEBUG -lm -o
 
 # Final build
 BUILD = recursive_descent/parser.c recursive_descent/lexer.c recursive_descent/main.c
