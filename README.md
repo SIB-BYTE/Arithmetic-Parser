@@ -1,7 +1,6 @@
-# Arithmetic-Parser:
 # How to use install it:
 
-```ocaml
+```bash
 git clone https://github.com/SIB-BYTE/Arithmetic-Parser/ ; make ; ./main
 ```
 
