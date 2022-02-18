@@ -1,7 +1,7 @@
 # Arithmetic-Parser:
 Usage:
 
-```
+```ocaml
 git clone https://github.com/SIB-BYTE/Arithmetic-Parser/ ; make ; ./main
 ```
 
