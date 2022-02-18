@@ -9,12 +9,12 @@ LL(1) parser with a hand-written lexer. (I plan on also implementing the shuntin
 
 Here is the backus-naur form metasyntax to describe how the recursive-descent parser will accept it's context-free grammars and what it will do with them:
 ```bnf
-<integer> := [0-9]
-<expr>    := <term> ( + | - ) <expr> | <term>
-<term>    := <power> ( * | / | % ) <term> | <power>
-<power>   := <unary> ^ <power> | <unary>
-<unary>   := - <unary> | <factor>
-<factor>  := ( <expr> ) | <integer>
+<integer> ::= [0-9]
+<expr>    ::= <term> ( + | - ) <expr> | <term>
+<term>    ::= <power> ( * | / | % ) <term> | <power>
+<power>   ::= <unary> ^ <power> | <unary>
+<unary>   ::= - <unary> | <factor>
+<factor>  ::= ( <expr> ) | <integer>
 ```
 
 Each non-terminal terminal is flexible, therefore you can adjust it to your liking and understanding. But for the sake of good practice and normalized standards I 
