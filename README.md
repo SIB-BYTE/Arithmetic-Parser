@@ -1,7 +1,7 @@
 # How to use install it:
 
 ```bash
-git clone https://github.com/SIB-BYTE/Arithmetic-Parser/ ; make ; ./main
+git clone https://github.com/SIB-BYTE/Arithmetic-Parser/ ; cd Arithmetic-Parser ; make ; ./main
 ```
 
 # Logic break-down:
