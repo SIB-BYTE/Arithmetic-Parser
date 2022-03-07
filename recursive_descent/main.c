@@ -17,11 +17,11 @@ int main(void)
 
 	while(TRUE)
 	{
-		printf("Provide a valid grammar: ");
+		printf("Provide a valid expression: ");
 		fgets(expr, sizeof(expr), stdin);
 
 		lexer_t *tokenize = lexer(expr);
-		printf("Result of grammar -> {%lf}\n", parse(tokenize));
+		printf("Result of expression -> {%lf}\n", parse(tokenize));
 
 		destroy_all_tokens(tokenize);
 		lexer_destroy(tokenize);
