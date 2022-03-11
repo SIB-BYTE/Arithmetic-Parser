@@ -9,13 +9,11 @@
 #include <stdio.h>
 #include "parser.h"
 
-#define TRUE 1
-
 int main(void)
 {
-	char expr[64];
+	char expr[64] = {0};
 
-	while(TRUE)
+	for(;;)
 	{
 		printf("Provide a valid expression: ");
 		fgets(expr, sizeof(expr), stdin);
