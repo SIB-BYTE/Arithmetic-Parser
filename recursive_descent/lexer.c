@@ -3,10 +3,10 @@
 #ifdef DEBUG
 int main(void)
 {
-	lexer_t *lexer_test = lexer((char []) {"1 + 1"});
-	token_iterator(lexer_test->head);
-	destroy_all_tokens(lexer_test);
-	lexer_destroy(lexer_test);
+    lexer_t *lexer_test = lexer((char []) {"1 + 1"});
+    token_iterator(lexer_test->head);
+    destroy_all_tokens(lexer_test);
+    lexer_destroy(lexer_test);
 }
 #endif
 
@@ -15,10 +15,9 @@ token_t *new_token(char type, double value)
 {
     token_t *token = calloc(1, sizeof(token_t));
     LASSERT(token != NULL, "Token: Failed memory allocation!");
-
+	
     token->type = type;
     token->value = value;
-    token->fd = NULL;
 
     return (token);
 }
@@ -28,7 +27,7 @@ token_t *new_token(char type, double value)
 void token_iterator(token_t *head)
 {
     for(token_t *tmp = head; tmp; tmp = tmp->fd)
-		printf("Token type -> {%s}\nToken value -> {%f}\n", token_type(tmp->type), tmp->value);
+	printf("Token type -> {%s}\nToken value -> {%f}\n", token_type(tmp->type), tmp->value);
 }
 #endif
 
@@ -36,39 +35,19 @@ void token_iterator(token_t *head)
 #ifdef DEBUG
 const char *token_type(int token_type)
 {
-    switch(token_type) {
-    case 1:
-        return "Floating point value";
-
-    case 2:
-        return "Integer value";
-
-    case '(':
-        return "Left parenthesis";
-
-    case ')':
-        return "Right parenthesis";
-
-    case '+':
-        return "Addition operator";
-
-    case '-':
-        return "Subtraction operator";
-
-    case '*':
-        return "Multiplication operator";
-
-    case '/':
-        return "Division operator";
-
-    case '^':
-        return "Power of operator";
-
-    case ' ':
-        return "Space white-space!";
-
-    default:
-        return "Not a valid token!";
+    switch(token_type)
+    {
+    	case 1:   return "Floating point value";
+    	case 2:   return "Integer value";
+	case '(': return "Left parenthesis";
+	case ')': return "Right parenthesis";
+	case '+': return "Addition operator";
+	case '-': return "Subtraction operator";
+	case '*': return "Multiplication operator";
+	case '/': return "Division operator";
+	case '^': return "Power of operator";
+	case ' ': return "Space white-space!";
+	default:  return "Not a valid token!";
     }
 }
 #endif
@@ -80,7 +59,7 @@ void destroy_all_tokens(lexer_t *tokens)
     token_t *next_ptr = 0;
 
     while(tmp)
-	{
+    {
         next_ptr = tmp->fd;
         free(tmp);
         tmp = next_ptr;
@@ -101,7 +80,8 @@ lexer_t *lexer_create(char *expr)
 // Append token to the end of the linked list.
 void lexer_add_token(lexer_t *lexer, token_t *token)
 {
-    if(!lexer->head) {
+    if(!lexer->head)
+    {
         lexer->head = token;
         return;
     }
@@ -149,48 +129,26 @@ lexer_t *lexer(char *tokens)
     // Construct a structure that holds the tokens as the "buffer".
     lexer_t *lexer = lexer_create(tokens);
 
-    while(*lexer->expr) // Iterates over the tokens
+    while(*lexer->expr) // Iterates over the token stream
     {
         // Checks to see if the tokens we are tokenizing are digits or not.
         if(isdigit(*lexer->expr))
-            parse_integer(lexer);
+		parse_integer(lexer);
 
         // If they aren't we'll append to our linked list.
-		else
-		{
+	else 
+	{
             // Appends the operator token to the linked list.
-            switch(*lexer->expr) {
-            case '+':
-                lexer_advance(lexer, '+');
-                break;
-
-            case '-':
-                lexer_advance(lexer, '-');
-                break;
-
-            case '*':
-                lexer_advance(lexer, '*');
-                break;
-
-            case '/':
-                lexer_advance(lexer, '/');
-                break;
-
-            case '(':
-                lexer_advance(lexer, '(');
-                break;
-
-            case ')':
-                lexer_advance(lexer, ')');
-                break;
-
-            case '^':
-                lexer_advance(lexer, '^');
-                break;
-
-            default:
-                lexer->expr++;
-                break;
+            switch(*lexer->expr)
+	    {
+            	case '+': lexer_advance(lexer, '+'); break;
+            	case '-': lexer_advance(lexer, '-'); break;
+		case '*': lexer_advance(lexer, '*'); break;
+		case '/': lexer_advance(lexer, '/'); break;
+		case '(': lexer_advance(lexer, '('); break;
+		case ')': lexer_advance(lexer, ')'); break;
+		case '^': lexer_advance(lexer, '^'); break;
+		default: lexer->expr++; break;
             }
         }
     }
