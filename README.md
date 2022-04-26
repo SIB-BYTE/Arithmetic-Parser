@@ -5,7 +5,7 @@ git clone https://github.com/SIB-BYTE/Arithmetic-Parser/ ; cd Arithmetic-Parser 
 ```
 
 # Logic break-down:
-LL(1) parser with a hand-written lexer. (I plan on also implementing the shunting-yard algorithm to also parse arithmetic expressions)
+Recursive descent parser with a hand-written lexer. (I plan on also implementing the shunting-yard algorithm to also parse arithmetic expressions)
 
 Here is the backus-naur form metasyntax to describe how the recursive-descent parser will accept it's context-free grammars and what it will do with them:
 ```ebnf
