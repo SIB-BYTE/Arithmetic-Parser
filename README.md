@@ -1,5 +1,7 @@
 # How to use install it:
 
+P.S: This code is fucking dogshit, I wish I could make it better but I am fucking stupid.
+
 ```bash
 git clone https://github.com/SIB-BYTE/Arithmetic-Parser/ ; cd Arithmetic-Parser ; make ; ./main
 ```
